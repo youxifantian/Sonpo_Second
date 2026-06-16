@@ -90,7 +90,42 @@ export default async function TopicPage({
         <h2 className="mb-3 text-lg font-bold text-slate-800">
           出題実績（{appearances.length}回）
         </h2>
-        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+
+        {/* スマホ：カード表示 */}
+        <div className="space-y-2 sm:hidden">
+          {appearances.map((ap, i) => {
+            const paper = getPaper(ap.year, ap.subject);
+            return (
+              <div key={i} className="rounded-lg border border-slate-200 bg-white p-3">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <Link href={`/exams/${ap.year}`} className="font-bold text-slate-800 hover:underline">
+                      {ap.era}
+                    </Link>
+                    <span className={`rounded px-1.5 py-0.5 text-[11px] font-semibold ${subjectStyle[ap.subject].badge}`}>
+                      {subjectStyle[ap.subject].label}
+                    </span>
+                    <span className="text-xs text-slate-500">{ap.questionNo}</span>
+                  </div>
+                  {paper && (
+                    <a
+                      href={paper.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600"
+                    >
+                      PDF <ExternalLink className="h-3 w-3" />
+                    </a>
+                  )}
+                </div>
+                {ap.note && <p className="mt-1 text-sm text-slate-600">{ap.note}</p>}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 広い画面：テーブル表示 */}
+        <div className="hidden overflow-hidden rounded-xl border border-slate-200 bg-white sm:block">
           <table className="w-full text-sm">
             <thead className="bg-slate-50 text-left text-xs text-slate-500">
               <tr>

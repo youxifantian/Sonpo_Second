@@ -38,7 +38,7 @@ export function TopicsExplorer() {
   return (
     <div className="space-y-4">
       {/* フィルタ */}
-      <div className="flex flex-wrap gap-3 rounded-lg border border-slate-200 bg-white p-3">
+      <div className="grid grid-cols-2 items-end gap-3 rounded-lg border border-slate-200 bg-white p-3 sm:flex sm:flex-wrap">
         <Select label="科目" value={subject} onChange={(v) => setSubject(v as SubjectFilter)} options={[
           { value: "all", label: "すべて" },
           { value: "sonpo1", label: "損保1" },
@@ -107,7 +107,7 @@ function Select({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1 rounded-md border border-slate-300 bg-white px-2 py-1.5 text-sm text-slate-700 focus:border-slate-400 focus:outline-none"
+        className="mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 text-sm text-slate-700 focus:border-slate-400 focus:outline-none sm:w-auto"
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>

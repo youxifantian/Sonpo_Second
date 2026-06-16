@@ -15,8 +15,9 @@ export default function RootLayout({
     <html lang="ja">
       <body className="min-h-screen">
         <Header />
-        <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>
-        <footer className="mx-auto max-w-5xl px-4 py-10 text-xs text-slate-400">
+        {/* 下部タブバー（md未満）に隠れないよう余白を確保 */}
+        <main className="mx-auto max-w-5xl px-4 py-6 pb-28 sm:py-8 md:pb-8">{children}</main>
+        <footer className="mx-auto max-w-5xl px-4 pb-28 pt-6 text-xs text-slate-400 md:pb-10">
           <p>
             学習用の非公式アプリです。過去問はアクチュアリー会の公開資料（
             <a
